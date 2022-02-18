@@ -14,6 +14,10 @@ export async function createItem(newItem) {
     return checkError(resp);
 }
 
+export async function buyItem(id){
+    const resp = await client.from('shopping').update({ bought: true }).match({ id });
+    return checkError(resp);
+}
 
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
