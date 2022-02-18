@@ -6,7 +6,6 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 export async function fetchItems() {
     const resp = await client.from('shopping').select().order('id');
     return resp.body;
-
 }
 
 export async function createItem(newItem) {
@@ -19,6 +18,10 @@ export async function buyItem(id){
     return checkError(resp);
 }
 
+export async function deleteAllItems(){
+    const resp = await client.from('shopping').delete().match({ user_id: client.auth.user().id });
+    return checkError(resp);
+}
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
 }

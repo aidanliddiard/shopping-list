@@ -1,4 +1,4 @@
-import { checkAuth, logout, fetchItems, createItem, buyItem } from '../fetch-utils.js';
+import { checkAuth, logout, fetchItems, createItem, buyItem, deleteAllItems } from '../fetch-utils.js';
 import { renderItem } from '../render-utils.js';
 
 checkAuth();
@@ -6,6 +6,7 @@ checkAuth();
 const logoutButton = document.getElementById('logout');
 const list = document.getElementById('list');
 const formData = document.getElementById('add-item');
+const clear = document.getElementById('clear');
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -34,4 +35,9 @@ formData.addEventListener('submit', async (e) => {
     formData.reset();
     await displayItems();
     //console.log(data);
+});
+
+clear.addEventListener('click', async () => {
+    await deleteAllItems();
+    displayItems();
 });
