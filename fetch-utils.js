@@ -5,7 +5,8 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function fetchItems() {
     const resp = await client.from('shopping').select().order('id');
-    console.log(resp);
+    return resp.body;
+
 }
 
 
