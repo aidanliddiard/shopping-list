@@ -9,6 +9,11 @@ export async function fetchItems() {
 
 }
 
+export async function createItem(newItem) {
+    const resp = await client.from('shopping').insert({ item: newItem });
+    return checkError(resp);
+}
+
 
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
@@ -44,6 +49,6 @@ export async function logout() {
     return (window.location.href = '../');
 }
 
-// function checkError({ data, error }) {
-//     return error ? console.error(error) : data;
-// }
+function checkError({ data, error }) {
+    return error ? console.error(error) : data;
+}

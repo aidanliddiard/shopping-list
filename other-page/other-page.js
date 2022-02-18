@@ -1,22 +1,32 @@
-import { checkAuth, logout, fetchItems } from '../fetch-utils.js';
+import { checkAuth, logout, fetchItems, createItem } from '../fetch-utils.js';
 import { renderItem } from '../render-utils.js';
 
 checkAuth();
 
 const logoutButton = document.getElementById('logout');
 const list = document.getElementById('list');
+const formData = document.getElementById('add-item');
 
 logoutButton.addEventListener('click', () => {
     logout();
 });
 
-window.addEventListener('load', async () => {
+async function displayItems() {
     const items = await fetchItems();
     //console.log(items);
     for (let item of items) {
         const li = renderItem(item);
         list.append(li);
     }
+}
+
+displayItems();
+
+formData.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newItem = new FormData(formData);
+    await createItem(newItem.get('new-item'));
+    formData.reset();
+    await displayItems();
+    //console.log(data);
 });
-
-
