@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
@@ -21,7 +22,14 @@
     </header>    
     <button id="logout">Logout</button>
     <main>
-        <h1>You are logged in!</h1>
+        <h1>Shopping List!</h1>
+        <form id="add-item">
+            <label>Add item: <input type="text" name="new-item" id="new-item"></label>
+            <button>Submit</button>
+            <button id="clear">Went shopping!</button>
+        </form>
+        <ul id="list">
+        </ul>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
